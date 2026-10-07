@@ -1,0 +1,16 @@
+$kind: http-request
+name: Predict Sentiment
+order: 3000
+url: '{{baseUrl}}/predict'
+method: POST
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: Accept
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "text": "Produto excelente! Chegou muito rápido e atendeu todas as expectativas."
+    }

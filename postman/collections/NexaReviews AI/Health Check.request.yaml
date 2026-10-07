@@ -1,0 +1,8 @@
+$kind: http-request
+name: Health Check
+order: 2000
+url: '{{baseUrl}}/health'
+method: GET
+headers:
+  - key: Accept
+    value: application/json

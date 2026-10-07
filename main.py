@@ -128,8 +128,9 @@ def main() -> None:
     metrics = model.train(X=X, y=y, test_size=0.2, random_state=42)
 
     # 7. Salvar artefato do modelo
-    model_output_path = "models/sentiment_model.pkl"
+    model_output_path = "models/modelo_sentimentos.pkl"
     model.save_model(filepath=model_output_path)
+    model.save_model(filepath="models/sentiment_model.pkl")
 
     # 8. Demonstração de inferência em tempo real
     print("\n" + "=" * 70)

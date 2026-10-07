@@ -1,0 +1,13 @@
+$kind: collection
+name: NexaReviews AI
+description: |-
+  API de análise inteligente de sentimentos em avaliações de e-commerce.
+  
+  Utiliza Machine Learning (TF-IDF + Regressão Logística) para classificar avaliações como **positivo** ou **negativo** em tempo real.
+  
+  **Base URL:** {{baseUrl}}
+  
+  ## Endpoints
+  - `GET /` — Informações gerais da API
+  - `GET /health` — Verificação de integridade e status do modelo
+  - `POST /predict` — Predição de sentimento em avaliações

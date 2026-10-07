@@ -1,0 +1,16 @@
+$kind: http-request
+name: 'Predict Sentiment - Negative Review'
+order: 4000
+url: '{{baseUrl}}/predict'
+method: POST
+headers:
+  - key: Content-Type
+    value: application/json
+  - key: Accept
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "text": "Produto péssimo, chegou quebrado e o atendimento foi horrível."
+    }
