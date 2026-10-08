@@ -171,21 +171,28 @@ O frontend oferece uma experiência de usuário rica e fluida:
 :: 1. Acesse a pasta raiz do projeto
 cd NexaReviewsAI
 
-:: 2. Crie o ambiente virtual com Python 3.13 (se já tiver uma pasta .venv antiga, exclua-a antes com: rmdir /s /q .venv)
-py -3.13 -m venv .venv
-
-:: 3. ATIVE o ambiente virtual (Obrigatório! O terminal passará a exibir '(.venv)' no início da linha)
+:: 2. ATIVE o ambiente virtual (Obrigatório! O terminal exibirá '(.venv)' no início da linha)
 .venv\Scripts\activate.bat
 
-:: 4. Instale todas as dependências
+:: 3. Instale todas as dependências
 pip install -r requirements.txt
 
-:: 5. (Opcional) Execute o pipeline de treino dos modelos
+:: 4. (Opcional) Execute o pipeline de treino dos modelos
 python main.py
 
-:: 6. Inicie a API com FastAPI e Uvicorn
+:: 5. Inicie a API com FastAPI e Uvicorn
 uvicorn src.api:app --reload
 ```
+
+> 🎯 **Método Direto no Windows (À prova de falhas de PATH / Não depende de ativação):**
+> Se você preferir rodar sem precisar ativar o ambiente a cada terminal aberto:
+> ```cmd
+> :: Executar o treino:
+> .\.venv\Scripts\python.exe main.py
+> 
+> :: Iniciar a API FastAPI:
+> .\.venv\Scripts\python.exe -m uvicorn src.api:app --reload
+> ```
 
 ---
 
@@ -194,22 +201,28 @@ uvicorn src.api:app --reload
 # 1. Acesse a pasta raiz do projeto
 cd NexaReviewsAI
 
-# 2. Crie o ambiente virtual com Python 3.13 (se já tiver uma pasta .venv antiga, exclua-a antes com: Remove-Item -Recurse -Force .venv)
-py -3.13 -m venv .venv
-
-# 3. ATIVE o ambiente virtual (Obrigatório! O terminal passará a exibir '(.venv)' no início da linha)
+# 2. ATIVE o ambiente virtual (Obrigatório! O terminal exibirá '(.venv)' no início da linha)
 # Caso o PowerShell bloqueie a execução de scripts, execute antes: Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\.venv\Scripts\Activate.ps1
 
-# 4. Instale todas as dependências
+# 3. Instale todas as dependências
 pip install -r requirements.txt
 
-# 5. (Opcional) Execute o pipeline de treino dos modelos
+# 4. (Opcional) Execute o pipeline de treino dos modelos
 python main.py
 
-# 6. Inicie a API com FastAPI e Uvicorn
+# 5. Inicie a API com FastAPI e Uvicorn
 uvicorn src.api:app --reload
 ```
+
+> 🎯 **Método Direto no PowerShell (À prova de falhas):**
+> ```powershell
+> # Executar o treino:
+> .\.venv\Scripts\python.exe main.py
+> 
+> # Iniciar a API FastAPI:
+> .\.venv\Scripts\python.exe -m uvicorn src.api:app --reload
+> ```
 
 ---
 
@@ -236,9 +249,9 @@ uvicorn src.api:app --reload
 
 > ⚠️ **Sinais de Atenção & Diagnóstico Rápido:**
 > - **Erro `ModuleNotFoundError: No module named 'matplotlib' / 'fastapi'` ou `'uvicorn' não é reconhecido`:**  
->   Isso ocorre quando os comandos são executados **sem o ambiente virtual estar ativo**. Certifique-se de que a linha do terminal exiba o prefixo **`(.venv)`** antes de rodar `python main.py` ou `uvicorn`.
+>   Isso ocorre quando os comandos são executados **sem o ambiente virtual estar ativo**. Certifique-se de que a linha do terminal exiba o prefixo **`(.venv)`** ou utilize o caminho direto `.\.venv\Scripts\python.exe`.
 > - **Erro `metadata-generation-failed` ou erro de compilação C/C++ no `scikit-learn`:**  
->   Isso ocorre se o ambiente virtual foi criado com o Python 3.14+ (que não possui binários pré-compilados). Recrie a pasta `.venv` utilizando explicitamente **`py -3.13 -m venv .venv`**.
+>   Isso ocorre se o comando for executado contra o Python 3.14+ global (que não possui binários pré-compilados). Utilize sempre o Python da `.venv` (Python 3.13).
 
 - A API estará disponível em: **`http://localhost:8000`** ou **`http://127.0.0.1:8000`**  
 - Documentação interativa Swagger UI: **`http://localhost:8000/docs`**  
