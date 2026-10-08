@@ -159,7 +159,7 @@ O frontend oferece uma experiência de usuário rica e fluida:
 ## 🚀 Como Executar o Projeto
 
 ### 1. Pré-requisitos
-- **Python 3.10 a 3.13** (Altamente recomendado Python 3.11, 3.12 ou 3.13 para compatibilidade total de binários pré-compilados do NumPy, Pandas e Scikit-Learn)
+- **Python 3.10 a 3.13** (⚠️ **Importante:** Não utilize Python 3.14+ no momento, pois versões experimentais ainda não contam com *wheels* pré-compilados para bibliotecas de Ciência de Dados no Windows, exigindo compilação C/C++ local que pode falhar com erro de `metadata-generation-failed`).
 - **Node.js 18+** e **npm**
 
 ---
@@ -171,22 +171,22 @@ O frontend oferece uma experiência de usuário rica e fluida:
    cd NexaReviewsAI
    ```
 
-2. Crie o ambiente virtual (recomendamos especificar o Python 3.13 caso possua múltiplas versões):
+2. Crie o ambiente virtual com a versão recomendada do Python:
    ```bash
-   # Windows (via Python Launcher - Recomendado caso tenha Python 3.13 instalado)
+   # Windows (usando Python Launcher com Python 3.13 - Recomendado):
    py -3.13 -m venv .venv
 
-   # Windows (padrão)
+   # Windows (usando o Python padrão do PATH):
    python -m venv .venv
 
-   # Linux / macOS
+   # Linux / macOS:
    python3 -m venv .venv
    ```
 
 3. Ative o ambiente virtual:
    ```bash
    # Windows (PowerShell)
-   .venv\Scripts\Activate.ps1
+   .\.venv\Scripts\Activate.ps1
 
    # Se o PowerShell bloquear a execução de scripts, execute antes:
    # Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
@@ -202,6 +202,8 @@ O frontend oferece uma experiência de usuário rica e fluida:
    ```bash
    pip install -r requirements.txt
    ```
+
+   > 💡 **Dica de Solução de Problemas:** Se você se deparar com erros de compilação no `scikit-learn` ou `ninja: build stopped: subcommand failed`, verifique se o seu interpretador é o Python 3.14+. Para corrigir, basta recriar a pasta `.venv` especificando `py -3.13 -m venv .venv`.
 
 5. *(Opcional)* Treine e gere os artefatos do modelo de Machine Learning:
    ```bash
