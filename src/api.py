@@ -70,6 +70,8 @@ class ReviewResponse(BaseModel):
 
 class HealthResponse(BaseModel):
     """Esquema de resposta para o endpoint de integridade do serviço."""
+    model_config = {"protected_namespaces": ()}
+
     status: str = Field(default="ok", description="Status operacional da API")
     model_loaded: bool = Field(..., description="Indica se o modelo preditivo está pronto em memória")
     model_path: Optional[str] = Field(default=None, description="Caminho do arquivo do modelo carregado")

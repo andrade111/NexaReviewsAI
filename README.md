@@ -159,57 +159,82 @@ O frontend oferece uma experiência de usuário rica e fluida:
 ## 🚀 Como Executar o Projeto
 
 ### 1. Pré-requisitos
-- **Python 3.10+** (recomendado Python 3.10 a 3.13)
+- **Python 3.10 a 3.13** (Altamente recomendado Python 3.11, 3.12 ou 3.13 para compatibilidade total de binários pré-compilados do NumPy, Pandas e Scikit-Learn)
 - **Node.js 18+** e **npm**
 
 ---
 
-### 2. Configuração do Backend (Python / FastAPI)
+### 2. Configuração e Execução do Backend (FastAPI)
 
-1. Clone ou acesse o diretório raiz do projeto:
+1. Abra o terminal e acesse o diretório raiz do projeto:
    ```bash
    cd NexaReviewsAI
    ```
 
-2. Crie e ative o ambiente virtual (opcional, mas recomendado):
+2. Crie o ambiente virtual (recomendamos especificar o Python 3.13 caso possua múltiplas versões):
    ```bash
-   # Windows (PowerShell)
+   # Windows (via Python Launcher - Recomendado caso tenha Python 3.13 instalado)
+   py -3.13 -m venv .venv
+
+   # Windows (padrão)
    python -m venv .venv
-   .venv\Scripts\Activate.ps1
 
    # Linux / macOS
    python3 -m venv .venv
+   ```
+
+3. Ative o ambiente virtual:
+   ```bash
+   # Windows (PowerShell)
+   .venv\Scripts\Activate.ps1
+
+   # Se o PowerShell bloquear a execução de scripts, execute antes:
+   # Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+   # Windows (Prompt de Comando / CMD)
+   .venv\Scripts\activate.bat
+
+   # Linux / macOS
    source .venv/bin/activate
    ```
 
-3. Instale as dependências do projeto:
+4. Instale as dependências do projeto:
    ```bash
    pip install -r requirements.txt
    ```
 
-4. *(Opcional)* Treine o modelo executando o script principal:
+5. *(Opcional)* Treine e gere os artefatos do modelo de Machine Learning:
    ```bash
    python main.py
    ```
-   > **Nota:** A API também conta com carregamento automático inteligente; caso o arquivo `.pkl` ainda não exista, ela treina e salva o modelo automaticamente ao iniciar.
+   > **Nota:** A API conta com carregamento automático e inteligente; caso os arquivos `.pkl` ainda não existam em `models/`, ela treinará e salvará o modelo automaticamente no startup.
 
-5. Inicie o servidor da API FastAPI:
+6. Inicie o servidor da API FastAPI:
    ```bash
+   # Opção 1 (via Uvicorn CLI):
    uvicorn src.api:app --reload
+
+   # Opção 2 (via módulo Python):
+   python -m uvicorn src.api:app --reload
+
+   # Opção 3 (executando o arquivo diretamente):
+   python src/api.py
    ```
-   A API estará disponível em: **`http://localhost:8000`**  
-   Documentação interativa Swagger: **`http://localhost:8000/docs`**
+
+   - A API estará disponível em: **`http://localhost:8000`** ou **`http://127.0.0.1:8000`**  
+   - Documentação interativa Swagger UI: **`http://localhost:8000/docs`**  
+   - Documentação ReDoc: **`http://localhost:8000/redoc`**  
 
 ---
 
-### 3. Configuração do Frontend (Vite + React + TypeScript)
+### 3. Configuração e Execução do Frontend (Vite + React + TypeScript)
 
-1. Abra um novo terminal e navegue até a pasta `frontend`:
+1. Abra um **novo terminal** e navegue até a pasta `frontend`:
    ```bash
    cd frontend
    ```
 
-2. Instale os pacotes npm:
+2. Instale as dependências npm:
    ```bash
    npm install
    ```
@@ -224,25 +249,39 @@ O frontend oferece uma experiência de usuário rica e fluida:
 
 ---
 
-## 🧪 Exemplos de Teste via cURL / Terminal
+## 🧪 Exemplos de Teste da API
 
-### Verificação de Saúde (Health Check):
+### 1. Verificação de Saúde (Health Check)
 ```bash
+# cURL
 curl -X GET "http://localhost:8000/health"
+
+# PowerShell
+Invoke-RestMethod -Uri "http://localhost:8000/health" -Method Get
 ```
 
-### Análise de Review Positivo:
+### 2. Análise de Avaliação Positiva
 ```bash
+# cURL
 curl -X POST "http://localhost:8000/predict" \
   -H "Content-Type: application/json" \
-  -d '{"text": "Amei o produto, entrega super rápida e qualidade excelente!"}'
+  -d "{\"text\": \"Amei o produto, entrega super rapida e qualidade excelente!\"}"
+
+# PowerShell
+$body = '{"text": "Amei o produto, entrega super rapida e qualidade excelente!"}'
+Invoke-RestMethod -Uri "http://localhost:8000/predict" -Method Post -Body $body -ContentType "application/json; charset=utf-8"
 ```
 
-### Análise de Review Negativo:
+### 3. Análise de Avaliação Negativa
 ```bash
+# cURL
 curl -X POST "http://localhost:8000/predict" \
   -H "Content-Type: application/json" \
-  -d '{"text": "Péssimo produto, quebrou no primeiro dia e não recomendo."}'
+  -d "{\"text\": \"Pessimo produto, quebrou no primeiro dia e nao recomendo.\"}"
+
+# PowerShell
+$body = '{"text": "Pessimo produto, quebrou no primeiro dia e nao recomendo."}'
+Invoke-RestMethod -Uri "http://localhost:8000/predict" -Method Post -Body $body -ContentType "application/json; charset=utf-8"
 ```
 
 ---

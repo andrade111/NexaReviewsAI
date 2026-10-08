@@ -50,7 +50,8 @@
   padding: 0;
 }
 
-html, body {
+html,
+body {
   min-height: 100vh;
   background-color: var(--bg-dark);
   color: var(--text-primary);
@@ -357,7 +358,8 @@ body::before {
   transform: translateY(0);
 }
 
-.btn-primary:disabled, .btn-secondary:disabled {
+.btn-primary:disabled,
+.btn-secondary:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   transform: none;
@@ -375,12 +377,23 @@ body::before {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.15); }
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1.15);
+  }
 }
 
 /* Result Box Display */
@@ -633,6 +646,7 @@ body::before {
     opacity: 0;
     transform: translateY(6px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -645,14 +659,18 @@ body::before {
     padding: 1.25rem 1rem 2.5rem;
     gap: 1.5rem;
   }
+
   .glass-card {
     padding: 1.25rem;
     border-radius: 16px;
   }
+
   .actions-bar {
     justify-content: stretch;
   }
-  .btn-primary, .btn-secondary {
+
+  .btn-primary,
+  .btn-secondary {
     width: 100%;
   }
 }
