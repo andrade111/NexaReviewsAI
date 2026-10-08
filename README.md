@@ -298,6 +298,8 @@ Invoke-RestMethod -Uri "http://localhost:8000/predict" -Method Post -Body $body 
 
 ---
 
-## 📄 Licença
+## 📄 Licença & Autor
 
-Este projeto é de código aberto sob a licença [MIT](LICENSE). Sinta-se livre para usar, estudar e evoluir!
+Este projeto foi desenvolvido com dedicação por **[Gabriel Andrade](https://github.com/andrade111)** 🚀.
+
+Distribuído sob a licença **[MIT](LICENSE)**. Sinta-se livre para usar, estudar, contribuir e evoluir a plataforma!
